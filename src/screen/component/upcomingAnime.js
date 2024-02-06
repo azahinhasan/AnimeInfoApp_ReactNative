@@ -18,9 +18,17 @@ const UpcomingAnime = (props) => {
   const [upcomingAnimeList, setUpcomingAnimeList] = useState();
   const year = new Date().getFullYear();
 
+  console.log(upcomingAnimeList,"upcomingAnimeList")
   const searchResults = async () => {
     try {
-      const response = await jiken.get('/seasons/'+year+'/'+props.season,{});
+    if(upcomingAnimeList){
+        setUpcomingAnimeList()
+        return
+    }
+      const response = await jiken.get(
+        "/seasons/" + year + "/" + props.season,
+        {}
+      );
       await setUpcomingAnimeList([...response.data.data]);
       //console.log(response.data.anime);
     } catch (err) {
@@ -29,27 +37,18 @@ const UpcomingAnime = (props) => {
     }
   };
 
-  useEffect(() => {
-    //searchResults();
-  }, []);
 
-  // useEffect(()=>{
-  //     if(!upcomingAnimeList){
-  //         console.log('upcomingAnimeList check ' ,upcomingAnimeList);
-  //        searchResults();
-  //     }
-  // },[upcomingAnimeList]);
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={()=>searchResults()}>
+      <Pressable style={ styles.button} onPress={() => searchResults()}>
         {" "}
         <Text style={styles.title}>
-          Upcoming Anime {year}({props.season})
+          Upcoming Anime {year} - {props.season}
         </Text>
       </Pressable>
 
-      {upcomingAnimeList == [] || upcomingAnimeList != "" ? (
+      {upcomingAnimeList&& (
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -71,8 +70,6 @@ const UpcomingAnime = (props) => {
             );
           }}
         />
-      ) : (
-        <Loading />
       )}
     </View>
   );
@@ -110,6 +107,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14,
     marginBottom: 5,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 2,
+    marginLeft: 5,
+    marginRight: 5,
+    backgroundColor: "white",
+    borderWidth: 2,
+    paddingTop:3
+    
   },
 });
 
