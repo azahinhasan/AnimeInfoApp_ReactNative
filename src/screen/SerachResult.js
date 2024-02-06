@@ -32,7 +32,7 @@ const SearchResult = (props) => {
                     onPress={()=>props.navigation.navigate('Details',{id : item.mal_id,type:type})}>
                         {/* <ResultsDetail result={item}/> */}
                         <View  style={styles.data}>
-                            <Image style={styles.image} source={{ uri:item.image_url}}/>
+                            <Image style={styles.image} source={{ uri:"https://cdn.myanimelist.net/images/anime/1015/138006.jpg"}}/>
                             <Text style={styles.name}>{item.title}</Text>
                             <Text style={styles.name1}>Release Date: {moment(item.start_date).format('MMM DD, YYYY')}</Text>
                         </View>

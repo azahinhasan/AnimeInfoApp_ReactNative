@@ -12,7 +12,7 @@ const UpcomingAnime = (props) => {
     const searchResults =async()=>{
 
         try {
-            const response = await jiken.get('/season/'+year+'/'+props.season,{});
+            // const response = await jiken.get('/seasons/'+year+'/'+props.season,{});
             setUpcomingAnimeList(response.data.anime);
             //console.log(response.data.anime);
 
@@ -38,7 +38,7 @@ const UpcomingAnime = (props) => {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Upcomming Anime {year}({props.season})</Text>
+                <Text style={styles.title}>Upcoming Anime {year}({props.season})</Text>
                 
                 {upcomingAnimeList==[] ||upcomingAnimeList!=''?
                 <FlatList
