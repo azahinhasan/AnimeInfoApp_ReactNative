@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView,Pressable } from "react-native";
 import jiken from "../api/jikan";
 import TopAnimeManga from "./component/topAnime";
 import SerachBar from "./component/searchBar";
@@ -17,7 +17,7 @@ const HomeScreen = (props) => {
     try {
       setPageAnime(pageNum);
       const response = await jiken.get("/top/anime?page=" + pageNum, {});
-      console.log(response,"top");
+      console.log(response, "top");
       //setTopAnimeResult(response.data.top);
       await setTopAnimeResult([...topAnimeResult, ...response.data.data]);
       //setTopAnimeResult(response.data.data.top);
@@ -37,8 +37,8 @@ const HomeScreen = (props) => {
     try {
       setPageManga(pageNum);
       const response = await jiken.get("/top/manga?page=" + pageNum, {});
-      
-      console.log(response,"manga")
+
+      console.log(response, "manga");
       let temp = [...topMangaResult, ...response.data.data];
       setTopMangaResult(temp);
       setErrorMsg("");
@@ -49,16 +49,21 @@ const HomeScreen = (props) => {
   };
 
   const searchResults = async () => {
+    console.log("search");
     try {
-      const response = await jiken.get('/'+serachType+'?q='+search+'&page=1',{});
-      if(response.data.top==[]){
-          setErrorMsg('Data Not Found!');
-      }else if(search==null){
-          setErrorMsg('');
-      }
-      else{
-          setErrorMsg('');
-          props.navigation.navigate('SerachResult' ,{data : response.data.results,search:search,type:serachType})
+      const response = await jiken.get("/" + "?q=" + search + "&page=1", {});
+
+      if (response.data.data == []) {
+        setErrorMsg("Data Not Found!");
+      } else if (search == null) {
+        setErrorMsg("");
+      } else {
+        setErrorMsg("");
+        props.navigation.navigate("SerachResult", {
+          data: response.data.data,
+          search: search,
+          type: serachType,
+        });
       }
     } catch (err) {
       //console.log(err);
@@ -130,7 +135,7 @@ const HomeScreen = (props) => {
   return (
     <View style={{ flex: 1 }}>
       <SerachBar
-        onTermChnage={(newTerm) => setSearch(newTerm)}
+        onTermChange={(newTerm) => setSearch(newTerm)}
         onTermSubmit={() => searchResults()}
         toAnime={toAnimeHnadler}
         toManga={toMangaHnadler}
