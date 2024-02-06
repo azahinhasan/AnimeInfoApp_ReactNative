@@ -13,6 +13,8 @@ const SearchResult = (props) => {
     //     return null;
     // }
 
+    console.log(data,'data')
+
     //console.log(props.data)
     console.log(data.mal_id);
     return (

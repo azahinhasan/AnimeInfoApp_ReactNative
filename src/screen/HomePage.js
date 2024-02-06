@@ -17,10 +17,9 @@ const HomeScreen = (props) => {
     try {
       setPageAnime(pageNum);
       const response = await jiken.get("/top/anime?page=" + pageNum, {});
-      console.log(response);
-      let temp = [...topAnimeResult, ...response.data.data];
+      console.log(response,"top");
       //setTopAnimeResult(response.data.top);
-      setTopAnimeResult(temp);
+      await setTopAnimeResult([...topAnimeResult, ...response.data.data]);
       //setTopAnimeResult(response.data.data.top);
       //console.log(response.data.top,'dddd')
 

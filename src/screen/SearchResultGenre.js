@@ -22,9 +22,13 @@ const SearchResultGenre = (props) => {
 
   const loadDetails = async () => {
     try {
-      // const response = await jiken.get('/search/anime?genre='+id+'&genre_exclude=0&order_by=score&sort=desc&type='+type,{});
-      // setData(response.data);
-      // console.log(response.data)
+      console.log(id)
+      const response = await jiken.get(
+        "/anime?genres=" + id + "&genre_exclude=0&order_by=score&sort=desc",
+        {}
+      );
+      setData(response.data.data);
+      console.log(response.data.data);
     } catch (err) {
       console.log(err);
       setErrorMsg("Data Not Found!");
@@ -42,7 +46,7 @@ const SearchResultGenre = (props) => {
         //horizontal
         numColumns={3}
         showsHorizontalScrollIndicator={false}
-        data={data.results}
+        data={data}
         keyExtractor={(r) => r.mal_id}
         renderItem={({ item }) => {
           return (
@@ -56,7 +60,10 @@ const SearchResultGenre = (props) => {
             >
               {/* <ResultsDetail result={item}/> */}
               <View style={styles.data}>
-                <Image style={styles.image} source={{ uri: "https://cdn.myanimelist.net/images/anime/1015/138006.jpg"}} />
+                <Image
+                  style={styles.image}
+                  source={{ uri: item.images.jpg.image_url }}
+                />
                 <Text style={styles.name}>{item.title}</Text>
                 <Text style={styles.name1}>
                   Release Date: {moment(item.start_date).format("MMM DD, YYYY")}

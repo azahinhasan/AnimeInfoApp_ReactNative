@@ -6,14 +6,14 @@ import ResultsDetail from './resultDetails';
 import Loading  from './loading';
 
 const UpcomingAnime = (props) => {
-    const [upcomingAnimeList,setUpcomingAnimeList]=useState([]);
+    const [upcomingAnimeList,setUpcomingAnimeList]=useState();
     const year = new Date().getFullYear();
 
     const searchResults =async()=>{
 
         try {
             // const response = await jiken.get('/seasons/'+year+'/'+props.season,{});
-            setUpcomingAnimeList(response.data.anime);
+            // await setUpcomingAnimeList([...response.data.data]);
             //console.log(response.data.anime);
 
         }catch (err){
@@ -29,12 +29,12 @@ const UpcomingAnime = (props) => {
     },[]);
     
 
-    useEffect(()=>{
-        if(upcomingAnimeList==[] || upcomingAnimeList==''){
-            console.log('upcomingAnimeList check ' ,upcomingAnimeList);
-            searchResults();
-        }
-    },[upcomingAnimeList]);
+    // useEffect(()=>{
+    //     if(!upcomingAnimeList){
+    //         console.log('upcomingAnimeList check ' ,upcomingAnimeList);
+    //        searchResults();
+    //     }
+    // },[upcomingAnimeList]);
 
         return (
             <View style={styles.container}>
