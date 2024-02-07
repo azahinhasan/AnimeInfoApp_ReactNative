@@ -42,7 +42,6 @@ const UpcomingAnime = (props) => {
   return (
     <View style={styles.container}>
       <Pressable style={ styles.button} onPress={() => searchResults()}>
-        {" "}
         <Text style={styles.title}>
           Upcoming Anime {year} - {props.season}
         </Text>
@@ -53,8 +52,7 @@ const UpcomingAnime = (props) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={upcomingAnimeList}
-          keyExtractor={(r) => r.mal_id}
-          //key={1}
+          keyExtractor={(r) => r.mal_id+Math.random()}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
@@ -65,7 +63,7 @@ const UpcomingAnime = (props) => {
                   })
                 }
               >
-                <ResultsDetail result={item} />
+                <ResultsDetail  result={item} />
               </TouchableOpacity>
             );
           }}

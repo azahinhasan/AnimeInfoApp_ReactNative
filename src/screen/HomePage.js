@@ -51,14 +51,16 @@ const HomeScreen = (props) => {
   const searchResults = async () => {
     console.log("search");
     try {
-      const response = await jiken.get("/" + "?q=" + search + "&page=1", {});
+      const response = await jiken.get("/"+serachType+ "/"+"?q=" + search, {});
 
-      if (response.data.data == []) {
+      if (response.data == []) {
         setErrorMsg("Data Not Found!");
       } else if (search == null) {
         setErrorMsg("");
       } else {
         setErrorMsg("");
+        console.log(response.data.data)
+
         props.navigation.navigate("SerachResult", {
           data: response.data.data,
           search: search,
@@ -136,7 +138,7 @@ const HomeScreen = (props) => {
     <View style={{ flex: 1 }}>
       <SerachBar
         onTermChange={(newTerm) => setSearch(newTerm)}
-        onTermSubmit={() => searchResults()}
+        onTermSubmit={searchResults}
         toAnime={toAnimeHnadler}
         toManga={toMangaHnadler}
         serachType={serachType}

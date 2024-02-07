@@ -12,11 +12,6 @@ const SearchResult = (props) => {
     // if(!props.result.length){
     //     return null;
     // }
-
-    console.log(data,'data')
-
-    //console.log(props.data)
-    console.log(data.mal_id);
     return (
     <View style={styles.container}>
         <Text style={styles.title}>Search Results '{serachName}'</Text>
@@ -34,7 +29,7 @@ const SearchResult = (props) => {
                     onPress={()=>props.navigation.navigate('Details',{id : item.mal_id,type:type})}>
                         {/* <ResultsDetail result={item}/> */}
                         <View  style={styles.data}>
-                            <Image style={styles.image} source={{ uri:"https://cdn.myanimelist.net/images/anime/1015/138006.jpg"}}/>
+                            <Image style={styles.image} source={{ uri: item.images.jpg.image_url}}/>
                             <Text style={styles.name}>{item.title}</Text>
                             <Text style={styles.name1}>Release Date: {moment(item.start_date).format('MMM DD, YYYY')}</Text>
                         </View>

@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 //icon are from https://github.com/expo/vector-icons
 
-const SearchScreen = ({term,onTermChnage,onTermSubmit,serachType,toAnime,toManga}) => {
+const SearchScreen = ({term,onTermChange,onTermSubmit,serachType,toAnime,toManga}) => {
 
   
 
@@ -15,7 +15,6 @@ const SearchScreen = ({term,onTermChnage,onTermSubmit,serachType,toAnime,toManga
     var [ isPress, setIsPress ] = React.useState(false);
 
 
-    console.log(serachType,'serachType');
 
     return (
         <View>
@@ -27,7 +26,7 @@ const SearchScreen = ({term,onTermChnage,onTermSubmit,serachType,toAnime,toManga
                 style={styles.inputStyle} 
                 placeholder="Search"
                 value={term}
-                onChangeText={onTermChnage}
+                onChangeText={onTermChange}
                 onEndEditing={onTermSubmit}
                 />
             </View>
