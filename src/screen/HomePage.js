@@ -17,13 +17,12 @@ const HomeScreen = (props) => {
     try {
       setPageAnime(pageNum);
       const response = await jiken.get("/top/anime?page=" + pageNum, {});
-      console.log(response, "top");
       //setTopAnimeResult(response.data.top);
       await setTopAnimeResult([...topAnimeResult, ...response.data.data]);
       //setTopAnimeResult(response.data.data.top);
       //console.log(response.data.top,'dddd')
 
-      if (response.data.top == null) {
+      if (!response.data.data) {
         setErrorMsg("Data Not Found!");
       } else {
         setErrorMsg("");
@@ -38,7 +37,6 @@ const HomeScreen = (props) => {
       setPageManga(pageNum);
       const response = await jiken.get("/top/manga?page=" + pageNum, {});
 
-      console.log(response, "manga");
       let temp = [...topMangaResult, ...response.data.data];
       setTopMangaResult(temp);
       setErrorMsg("");
@@ -52,14 +50,13 @@ const HomeScreen = (props) => {
     console.log("search");
     try {
       const response = await jiken.get("/"+serachType+ "/"+"?q=" + search, {});
-
-      if (response.data == []) {
+      console.log(response.data.data,"response.data.data")
+      if (response.data.data.length === 0) {
         setErrorMsg("Data Not Found!");
       } else if (search == null) {
         setErrorMsg("");
       } else {
         setErrorMsg("");
-        console.log(response.data.data)
 
         props.navigation.navigate("SerachResult", {
           data: response.data.data,
@@ -102,6 +99,7 @@ const HomeScreen = (props) => {
   };
 
   useEffect(() => {
+    setErrorMsg("");
     topAnimeLoad(1);
     topMangaLoad(1);
   }, []);
