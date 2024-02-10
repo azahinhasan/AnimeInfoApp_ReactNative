@@ -18,7 +18,6 @@ const UpcomingAnime = (props) => {
   const [upcomingAnimeList, setUpcomingAnimeList] = useState();
   const year = new Date().getFullYear();
 
-  console.log(upcomingAnimeList,"upcomingAnimeList")
   const searchResults = async () => {
     try {
     if(upcomingAnimeList){

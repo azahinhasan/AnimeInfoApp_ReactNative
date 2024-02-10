@@ -13,7 +13,6 @@ const TopAnime = (props) => {
     useEffect(()=>{
 
         if(props.data=='' || props.data==[]){
-            console.log('rerequsting for top anime')
             props.topAnimeLoad;
         }
     },[]);

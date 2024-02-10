@@ -30,15 +30,12 @@ const TopAnime = (props) => {
 
   const loadDetails = async () => {
     try {
-      console.log(id);
       const response = await jiken.get("/" + type + "/" + id, {});
-      console.log(response);
       setInfo(response.data.data);
       setAired(response.data.data.aired.string);
       setLicensors(response.data.data.licensors[0].name);
       setStudios(response.data.data.studios[0].name);
       setGenres(response.data.data.genres);
-      console.log(response.data.data.genres);
     } catch (err) {
       console.log(err);
       setErrorMsg("Data Not Found!");

@@ -50,7 +50,6 @@ const HomeScreen = (props) => {
     console.log("search");
     try {
       const response = await jiken.get("/"+serachType+ "/"+"?q=" + search, {});
-      console.log(response.data.data,"response.data.data")
       if (response.data.data.length === 0) {
         setErrorMsg("Data Not Found!");
       } else if (search == null) {
@@ -76,11 +75,9 @@ const HomeScreen = (props) => {
 
   const toAnimeHnadler = async () => {
     setSerachType("anime");
-    console.log(serachType);
   };
   const toMangaHnadler = async () => {
     setSerachType("manga");
-    console.log(serachType);
   };
   const nextPageAnime = () => {
     if (pageAnime < 20) {

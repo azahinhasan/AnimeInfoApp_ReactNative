@@ -22,13 +22,11 @@ const SearchResultGenre = (props) => {
 
   const loadDetails = async () => {
     try {
-      console.log(id)
       const response = await jiken.get(
         "/anime?genres=" + id + "&genre_exclude=0&order_by=score&sort=desc",
         {}
       );
       setData(response.data.data);
-      console.log(response.data.data);
     } catch (err) {
       console.log(err);
       setErrorMsg("Data Not Found!");
