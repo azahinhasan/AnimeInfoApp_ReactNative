@@ -2,6 +2,7 @@
   "build": {
     "preview": {
       "android": {
+        "node": "16.17.0",
         "buildType": "apk"
       }
     },
@@ -16,6 +17,11 @@
     "preview4": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "android": {
+        "node": "16.17.0",
+        "buildType": "apk"
+      }
+    }
   }
 }

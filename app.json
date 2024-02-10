@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "AnimeAPp",
+    "name": "AnimeApp",
     "slug": "AnimeAPp",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -20,6 +20,8 @@
       "supportsTablet": true
     },
     "android": {
+      "supportsTablet": true,
+      "node": "16.17.0",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
